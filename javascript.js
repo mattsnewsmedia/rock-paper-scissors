@@ -1,6 +1,60 @@
 let humanScore = 0;
 let computerScore = 0;
 
+const begin = document.querySelector("#begin");
+const board = document.querySelector(".game-board");
+
+begin.addEventListener('click', () => {
+    board.removeChild(begin);
+
+    const choose = document.querySelector("#title");
+    choose.textContent = "Choose Your Weapon";
+
+    score = document.createElement("p");
+    score.textContent = "Human: " + humanScore + " Computer: " + computerScore;
+
+    board.insertBefore(score, title.nextSibling);
+
+    const rock = document.createElement("button");
+    const paper = document.createElement("button");
+    const scissors = document.createElement("button");
+
+    rock.textContent = "Rock";
+    paper.textContent = "Paper";
+    scissors.textContent = "Scissors";
+
+    board.appendChild(rock);
+    board.appendChild(paper);
+    board.appendChild(scissors);
+
+    rock.addEventListener('click', () => {
+        let humanChoice = "rock";
+        let computerChoice = getComputerChoice(Math.random());
+        playRound(humanChoice, computerChoice);
+        score.textContent = "Human: " + humanScore + " Computer: " + computerScore;
+    });
+
+    paper.addEventListener('click', () => {
+        let humanChoice = "paper";
+        let computerChoice = getComputerChoice(Math.random());
+        playRound(humanChoice, computerChoice);
+        score.textContent = "Human: " + humanScore + " Computer: " + computerScore;
+    });
+
+    scissors.addEventListener('click', () => {
+        let humanChoice = "scissors";
+        let computerChoice = getComputerChoice(Math.random());
+        playRound(humanChoice, computerChoice);
+        score.textContent = "Human: " + humanScore + " Computer: " + computerScore;
+    });
+});
+if(playerScore == 5){
+    alert("5 points, you win!");
+}
+else if(computerScore == 5){
+    alert("5 points, computer wins!")
+}
+
 //Takes argument 'shootComputer' and compares it with numbers between 0 and .999 to determine
 //if the computer chose rock, paper, or scissors
 
@@ -18,54 +72,51 @@ function getComputerChoice(shootComputer){
         return shootComputer; 
 }
 
-//Prompt user for their choice of rock paper or scissors
-
-function getHumanChoice(){
-    let shootHuman = prompt("Choose your weapon: rock, paper, or scissors");
-    if(shootHuman.toUpperCase() == "ROCK" || shootHuman.toUpperCase() == "PAPER" || shootHuman.toUpperCase() == "SCISSORS"){
-    return shootHuman;
-    }
-    else
-        return "Not an option";
-}
-
 // Compares human choice to computer choice to determine which action to take
 
 function playRound(humanChoice, computerChoice){
     humanChoice = humanChoice.toLowerCase();
     if(humanChoice == "rock" && computerChoice == "scissors"){
         humanScore++;
-        return alert("You win! Rock beats paper!");
+        alert("You win! Rock beats paper!");
     }
     else if(humanChoice == "paper" && computerChoice == "rock"){
         humanScore++;
-        return alert("You win! Paper beats rock!");        
+        alert("You win! Paper beats rock!");        
     }
     else if(humanChoice == "scissors" && computerChoice == "paper"){
         humanScore++;
-        return alert("You win! Scissors beats paper!");        
+        alert("You win! Scissors beats paper!");        
     }
     else if(humanChoice == "rock" && computerChoice == "rock"){
-        return alert("It's a draw!");
+        alert("It's a draw!");
     }
     else if(humanChoice == "paper" && computerChoice == "paper"){
-        return alert("It's a draw!");        
+        alert("It's a draw!");        
     }
     else if(humanChoice == "scissors" && computerChoice == "scissors"){
-        return alert("It's a draw!");        
+        alert("It's a draw!");        
     }
     else if(humanChoice == "rock" && computerChoice == "paper"){
         computerScore++;
-        return alert("You lose! Computer chose paper!");
+        alert("You lose! Computer chose paper!");
     }
     else if(humanChoice == "paper" && computerChoice == "scissors"){
         computerScore++;
-        return alert("You lose! Computer chose scissors!");        
+        alert("You lose! Computer chose scissors!");        
     }
     else if(humanChoice == "scissors" && computerChoice == "rock"){
         computerScore++;
-        return alert("You lose! Computer chose rock!");        
+        alert("You lose! Computer chose rock!");        
     }
+    if (humanScore === 5) {
+        alert("You Win!");
+        return; 
+    } 
+    else if (computerScore === 5) {
+        alert("Computer Wins!");
+        return;
+    } 
 }
 
 
