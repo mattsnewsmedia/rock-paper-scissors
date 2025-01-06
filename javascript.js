@@ -68,27 +68,4 @@ function playRound(humanChoice, computerChoice){
     }
 }
 
-//Creates a loop that calls the playRound function five times and gives an alert for who
-//the winner is
-
-function playGame(){
-    humanScore = 0;
-    computerScore = 0;
-    let count = 5;
-    for(let i=1; i<=count; i++){
-        let human = getHumanChoice();
-        let computer = getComputerChoice(Math.random());
-    playRound(human, computer);
-    }
-    if(humanScore > computerScore){
-        return alert("You won!");
-    }
-    else if(humanScore == computerScore){
-        return alert("It's a draw!");
-    }
-    else
-        return alert("You lose!");
-}
-
-playGame();
 
